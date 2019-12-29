@@ -21,12 +21,12 @@ public class KierownikGUI extends JFrame implements ActionListener {
         setLocation(100,100);
         this.getContentPane().setBackground(Color.yellow);
         setLayout(null);
-        JLabel infoStartowe1 = new JLabel("Wybierz jaki typ czekolad, ile sztuk i w jakiej cenie chcesz dodać: ");
+        JLabel infoStartowe1 = new JLabel("Wybierz jaki typ, ile sztuk, cenę, datę ważności, nazwę oraz producenta czekolady, którą chcesz dodać: ");
         JLabel infoStartowe2 = new JLabel("Dodatkowe akcje kierownika: ");
         infoStartowe1.setForeground(Color.BLACK);
         infoStartowe2.setForeground(Color.BLACK);
 
-        infoStartowe1.setBounds(10,10,400,30);
+        infoStartowe1.setBounds(10,10,900,30);
         add(infoStartowe1);
         infoStartowe2.setBounds(930,10,350,30);
         add(infoStartowe2);

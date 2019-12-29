@@ -9,28 +9,29 @@ public class PracownikGUI extends JFrame implements ActionListener {
     String[] rodzajeMlecznej = {"","18 %", "20 %", "25 %"};
     String[] rodzajeZ_dodatkami = {"","orzechy", "nadzienie", "bakalie"};
     JComboBox gorzkaCobo,mlecznaCobo,z_DodatkamiCobo;
-    JTextField gorzkaText,mlecznaText,z_DodatkamiText;
+    JTextField gorzkaText,mlecznaText,z_DodatkamiText,gorzkaNazwa,mlecznaNazwa,z_DodatkamiNazwa;
     JButton sprzedaj,gorzkaPrzegladaj, mlecznaPrzegladaj, z_dodatkamiPrzegladaj;
-    JLabel gorzka,mleczna,z_dodatkami,ilosc;
+    JLabel gorzka,mleczna,z_dodatkami,ilosc,nazwa;
 
 
     PracownikGUI(){
-        setSize(650, 500);
+        setSize(850, 500);
         setTitle("CzekoFab: okno pracownika");
         setLocation(300,300);
         this.getContentPane().setBackground(Color.blue);
         setLayout(null);
-        JLabel infoStartowe1 = new JLabel("Wybierz jaki typ i ile sztuk czekolad chcesz sprzedać: ");
+        JLabel infoStartowe1 = new JLabel("Wybierz jaki typ ile sztuk oraz nazwę czekolad, jakie chcesz sprzedać: ");
         JLabel infoStartowe2 = new JLabel("Wybierz jaki typ czekolad chcesz przeglądać: ");
         infoStartowe1.setForeground(Color.BLACK);
         infoStartowe2.setForeground(Color.BLACK);
 
-        infoStartowe1.setBounds(10,10,350,30);
+        infoStartowe1.setBounds(10,10,500,30);
         add(infoStartowe1);
-        infoStartowe2.setBounds(370,10,350,30);
+        infoStartowe2.setBounds(570,10,350,30);
         add(infoStartowe2);
 
         ilosc = new JLabel("ILOŚĆ");
+        nazwa = new JLabel("NAZWA");
         gorzka = new JLabel("GORZKA");
         mleczna = new JLabel("MLECZNA");
         z_dodatkami = new JLabel("Z DODATKAMI");
@@ -40,6 +41,9 @@ public class PracownikGUI extends JFrame implements ActionListener {
         gorzkaText = new JTextField();
         mlecznaText = new JTextField();
         z_DodatkamiText = new JTextField();
+        gorzkaNazwa = new JTextField();
+        mlecznaNazwa = new JTextField();
+        z_DodatkamiNazwa = new JTextField();
         sprzedaj = new JButton("SPRZEDAJ");
         gorzkaPrzegladaj = new JButton("GORZKA");
         mlecznaPrzegladaj = new JButton("MLECZNA");
@@ -48,6 +52,9 @@ public class PracownikGUI extends JFrame implements ActionListener {
         ilosc.setForeground(Color.black);
         ilosc.setBounds(270,50,200,30);
         add(ilosc);
+        nazwa.setForeground(Color.black);
+        nazwa.setBounds(360,50,200,30);
+        add(nazwa);
 
         gorzka.setForeground(Color.black);
         gorzka.setBounds(100,50,200,30);
@@ -57,8 +64,10 @@ public class PracownikGUI extends JFrame implements ActionListener {
         gorzkaCobo.setSelectedIndex(0);
         add(gorzkaText);
         gorzkaText.setBounds(270,90,50,30);
+        add(gorzkaNazwa);
+        gorzkaNazwa.setBounds(360,90,150,30);
         add(gorzkaPrzegladaj);
-        gorzkaPrzegladaj.setBounds(390,90,150,30);
+        gorzkaPrzegladaj.setBounds(590,90,150,30);
         gorzkaPrzegladaj.addActionListener(this);
 
 
@@ -70,8 +79,10 @@ public class PracownikGUI extends JFrame implements ActionListener {
         mlecznaCobo.setSelectedIndex(0);
         add(mlecznaText);
         mlecznaText.setBounds(270,170,50,30);
+        add(mlecznaNazwa);
+        mlecznaNazwa.setBounds(360,170,150,30);
         add(mlecznaPrzegladaj);
-        mlecznaPrzegladaj.setBounds(390,170,150,30);
+        mlecznaPrzegladaj.setBounds(590,170,150,30);
         mlecznaPrzegladaj.addActionListener(this);
 
         z_dodatkami.setForeground(Color.black);
@@ -82,8 +93,10 @@ public class PracownikGUI extends JFrame implements ActionListener {
         z_DodatkamiCobo.setSelectedIndex(0);
         add(z_DodatkamiText);
         z_DodatkamiText.setBounds(270,250,50,30);
+        add(z_DodatkamiNazwa);
+        z_DodatkamiNazwa.setBounds(360,250,150,30);
         add(z_dodatkamiPrzegladaj);
-        z_dodatkamiPrzegladaj.setBounds(390,250,150,30);
+        z_dodatkamiPrzegladaj.setBounds(590,250,150,30);
         z_dodatkamiPrzegladaj.addActionListener(this);
 
         add(sprzedaj);
@@ -112,16 +125,16 @@ public class PracownikGUI extends JFrame implements ActionListener {
             String msg3 = (String) z_DodatkamiCobo.getSelectedItem();
             switch (msg1) {
                 case "50 %":
-                    if (!gorzkaText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 50% zawartości kakao");
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 50% zawartości kakao, o nazwie: " + gorzkaNazwa.getText() );
                     break;
                 case "70 %":
-                    if (!gorzkaText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 70% zawartości kakao");
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 70% zawartości kakao, o nazwie: " + gorzkaNazwa.getText() );
                     break;
                 case "90 %":
-                    if (!gorzkaText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 90% zawartości kakao");
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 90% zawartości kakao, o nazwie: " + gorzkaNazwa.getText() );
                     break;
                 case "":
                     break;
@@ -130,16 +143,16 @@ public class PracownikGUI extends JFrame implements ActionListener {
             }
             switch (msg2) {
                 case "18 %":
-                    if (!mlecznaText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 18% zawartości tłuszczu");
+                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 18% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText() );
                     break;
                 case "20 %":
-                    if (!mlecznaText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 20% zawartości tłuszczu");
+                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 20% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText() );
                     break;
                 case "25 %":
-                    if (!mlecznaText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 25% zawartości tłuszczu");
+                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 25% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText() );
                     break;
                 case "":
                     break;
@@ -148,16 +161,16 @@ public class PracownikGUI extends JFrame implements ActionListener {
             }
             switch (msg3) {
                 case "orzechy":
-                    if (!z_DodatkamiText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z orzechami");
+                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z orzechami, o nazwie: " + z_DodatkamiNazwa.getText() );
                     break;
                 case "nadzienie":
-                    if (!z_DodatkamiText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z nadzieniem");
+                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z nadzieniem, o nazwie: " + z_DodatkamiNazwa.getText() );
                     break;
                 case "bakalie":
-                    if (!z_DodatkamiText.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z bakaliami");
+                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty())
+                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z bakaliami, o nazwie: " + z_DodatkamiNazwa.getText() );
                     break;
                 case "":
                     break;
