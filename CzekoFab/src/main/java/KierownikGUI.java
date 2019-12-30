@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class KierownikGUI extends JFrame implements ActionListener {
 
@@ -154,10 +158,35 @@ public class KierownikGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
           if (e.getSource() == przegladajMagazyn) {
-            System.out.println("Chcesz przeglądać stan magazynu");
+
+              System.out.println("Chcesz przeglądać stan magazynu: ");
+              System.out.format("| %s | %s |%n","Nazwa: ","Ilość: ");
+              try {
+                  PreparedStatement preparedStmt3 = Main.myCon.prepareStatement("call  przegladajMagazyn()");
+                  ResultSet rs = preparedStmt3.executeQuery();
+                  while (rs.next()){
+                      System.out.format("| %s | %2s |%n",rs.getString("nazwa"),rs.getString("ilosc"));
+                     // System.out.println(rs.getString("nazwa") + " " + rs.getString("ilosc"));
+                  }
+
+              } catch (SQLException ex) {
+                  System.err.println("Got an exception!");
+              }
         } if (e.getSource() == pokazPrawiePrzeterminowane) {
-            System.out.println("Chcesz przeglądać produkt o krótkiej dacie przydatności");
+            System.out.println("Chcesz przeglądać produkt o krótkiej dacie przydatności: ");
+            System.out.format("| %s | %s | %s | %s |%n","ID: ","Typ: ","Przydatność: ","Cena: ");
+            try {
+                PreparedStatement preparedStmt4 = Main.myCon.prepareStatement("call  pokazPrawiePrzeterminowane()");
+                ResultSet rs = preparedStmt4.executeQuery();
+                while (rs.next()){
+                    System.out.format("| %s | %s | %s | %s |%n",rs.getString("id"),rs.getString("typ"),rs.getString("termin_przydatnosci") ,rs.getString("cena"));
+                    //System.out.println(rs.getString("id") + " " + rs.getString("typ") + " " + rs.getString("termin_przydatnosci") + " " + rs.getString("cena"));
+                }
+            } catch (SQLException ex) {
+                System.err.println("Got an exception!");
+            }
         } if (e.getSource() == podsumowanieMiesieczne) {
+              //TODO: dodać "call podsumaowanieMiesieczne()"
             System.out.println("Chcesz zrobić podsumowanie miesięczne");
         }
         if (e.getSource() == dodaj) {
@@ -166,19 +195,61 @@ public class KierownikGUI extends JFrame implements ActionListener {
             String msg3 = (String) z_DodatkamiCobo.getSelectedItem();
             switch (msg1) {
                 case "50 %":
-                    if (!gorzkaText.getText().isEmpty() && !gorzkaCena.getText().isEmpty() && !gorzkaData.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty() && !gorzkaProducent.getText().isEmpty())
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaCena.getText().isEmpty() && !gorzkaData.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty() && !gorzkaProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt.setString (1, "Gorzka");
+                            preparedStmt.setString (2, gorzkaText.getText());
+                            preparedStmt.setString (3, "50");
+                            preparedStmt.setString (4, gorzkaCena.getText());
+                            preparedStmt.setString (5, gorzkaData.getText());
+                            preparedStmt.setString (6, gorzkaNazwa.getText());
+                            preparedStmt.setString (7, gorzkaProducent.getText());
+                            preparedStmt.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + gorzkaText.getText() + " gorzkich czekolad o 50% zawartości kakao za: " + gorzkaCena.getText() + " zł" +
-                                " ważnych do: " + gorzkaData.getText() + " o nazwie: " + gorzkaNazwa.getText() + " producenta: " + gorzkaProducent.getText() );
+                                " ważnych do: " + gorzkaData.getText() + " o nazwie: " + gorzkaNazwa.getText() + " producenta: " + gorzkaProducent.getText());
+                    }
                     break;
                 case "70 %":
-                    if (!gorzkaText.getText().isEmpty() && !gorzkaCena.getText().isEmpty() && !gorzkaData.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty() && !gorzkaProducent.getText().isEmpty())
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaCena.getText().isEmpty() && !gorzkaData.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty() && !gorzkaProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt.setString (1, "Gorzka");
+                            preparedStmt.setString (2, gorzkaText.getText());
+                            preparedStmt.setString (3, "70");
+                            preparedStmt.setString (4, gorzkaCena.getText());
+                            preparedStmt.setString (5, gorzkaData.getText());
+                            preparedStmt.setString (6, gorzkaNazwa.getText());
+                            preparedStmt.setString (7, gorzkaProducent.getText());
+                            preparedStmt.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + gorzkaText.getText() + " gorzkich czekolad o 70% zawartości kakao za: " + gorzkaCena.getText() + " zł" +
-                                " ważnych do: " + gorzkaData.getText() + " o nazwie: " + gorzkaNazwa.getText() + " producenta: " + gorzkaProducent.getText() );
+                                " ważnych do: " + gorzkaData.getText() + " o nazwie: " + gorzkaNazwa.getText() + " producenta: " + gorzkaProducent.getText());
+                    }
                     break;
                 case "90 %":
-                    if (!gorzkaText.getText().isEmpty() && !gorzkaCena.getText().isEmpty() && !gorzkaData.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty() && !gorzkaProducent.getText().isEmpty())
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaCena.getText().isEmpty() && !gorzkaData.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty() && !gorzkaProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt.setString (1, "Gorzka");
+                            preparedStmt.setString (2, gorzkaText.getText());
+                            preparedStmt.setString (3, "90");
+                            preparedStmt.setString (4, gorzkaCena.getText());
+                            preparedStmt.setString (5, gorzkaData.getText());
+                            preparedStmt.setString (6, gorzkaNazwa.getText());
+                            preparedStmt.setString (7, gorzkaProducent.getText());
+                            preparedStmt.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + gorzkaText.getText() + " gorzkich czekolad o 90% zawartości kakao za: " + gorzkaCena.getText() + " zł" +
-                                " ważnych do: " + gorzkaData.getText() + " o nazwie: " + gorzkaNazwa.getText() + " producenta: " + gorzkaProducent.getText() );
+                                " ważnych do: " + gorzkaData.getText() + " o nazwie: " + gorzkaNazwa.getText() + " producenta: " + gorzkaProducent.getText());
+                    }
                     break;
                 case "":
                     break;
@@ -187,19 +258,60 @@ public class KierownikGUI extends JFrame implements ActionListener {
             }
             switch (msg2) {
                 case "18 %":
-                    if (!mlecznaText.getText().isEmpty() && !mlecznaCena.getText().isEmpty() && !mlecznaData.getText().isEmpty() && !mlecznaNazwa.getText().isEmpty() && !mlecznaProducent.getText().isEmpty())
+                    if (!mlecznaText.getText().isEmpty() && !mlecznaCena.getText().isEmpty() && !mlecznaData.getText().isEmpty() && !mlecznaNazwa.getText().isEmpty() && !mlecznaProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt1.setString (1, "Mleczna");
+                            preparedStmt1.setString (2, mlecznaText.getText());
+                            preparedStmt1.setString (3, "18");
+                            preparedStmt1.setString (4, mlecznaCena.getText());
+                            preparedStmt1.setString (5, mlecznaData.getText());
+                            preparedStmt1.setString (6, mlecznaNazwa.getText());
+                            preparedStmt1.setString (7, mlecznaProducent.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + mlecznaText.getText() + " mlecznych czekolad o 18% zawartości tłuszczu za: " + mlecznaCena.getText() + " zł" +
-                                " ważnych do: " + mlecznaData.getText() + " o nazwie: " + mlecznaNazwa.getText() + " producenta: " + mlecznaProducent.getText() );
+                                " ważnych do: " + mlecznaData.getText() + " o nazwie: " + mlecznaNazwa.getText() + " producenta: " + mlecznaProducent.getText());
+                    }
                 break;
                 case "20 %":
-                    if (!mlecznaText.getText().isEmpty() && !mlecznaCena.getText().isEmpty() && !mlecznaData.getText().isEmpty() && !mlecznaNazwa.getText().isEmpty() && !mlecznaProducent.getText().isEmpty())
+                    if (!mlecznaText.getText().isEmpty() && !mlecznaCena.getText().isEmpty() && !mlecznaData.getText().isEmpty() && !mlecznaNazwa.getText().isEmpty() && !mlecznaProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt1.setString (1, "Mleczna");
+                            preparedStmt1.setString (2, mlecznaText.getText());
+                            preparedStmt1.setString (3, "20");
+                            preparedStmt1.setString (4, mlecznaCena.getText());
+                            preparedStmt1.setString (5, mlecznaData.getText());
+                            preparedStmt1.setString (6, mlecznaNazwa.getText());
+                            preparedStmt1.setString (7, mlecznaProducent.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + mlecznaText.getText() + " mlecznych czekolad o 20% zawartości tłuszczu za: " + mlecznaCena.getText() + " zł" +
-                                " ważnych do: " + mlecznaData.getText() + " o nazwie: " + mlecznaNazwa.getText() + " producenta: " + mlecznaProducent.getText() );
+                                " ważnych do: " + mlecznaData.getText() + " o nazwie: " + mlecznaNazwa.getText() + " producenta: " + mlecznaProducent.getText());
+                    }
                     break;
                 case "25 %":
-                    if (!mlecznaText.getText().isEmpty() && !mlecznaCena.getText().isEmpty() && !mlecznaData.getText().isEmpty() && !mlecznaNazwa.getText().isEmpty() && !mlecznaProducent.getText().isEmpty())
-                        System.out.println("Dodałeś " + mlecznaText.getText() + " mlecznych czekolad o 25% zawartości tłuszczu za: " + mlecznaCena.getText() + " zł" +
-                                " ważnych do: " + mlecznaData.getText() + " o nazwie: " + mlecznaNazwa.getText() + " producenta: " + mlecznaProducent.getText() );
+                    if (!mlecznaText.getText().isEmpty() && !mlecznaCena.getText().isEmpty() && !mlecznaData.getText().isEmpty() && !mlecznaNazwa.getText().isEmpty() && !mlecznaProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt1.setString (1, "Mleczna");
+                            preparedStmt1.setString (2, mlecznaText.getText());
+                            preparedStmt1.setString (3, "25");
+                            preparedStmt1.setString (4, mlecznaCena.getText());
+                            preparedStmt1.setString (5, mlecznaData.getText());
+                            preparedStmt1.setString (6, mlecznaNazwa.getText());
+                            preparedStmt1.setString (7, mlecznaProducent.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        } System.out.println("Dodałeś " + mlecznaText.getText() + " mlecznych czekolad o 25% zawartości tłuszczu za: " + mlecznaCena.getText() + " zł" +
+                                " ważnych do: " + mlecznaData.getText() + " o nazwie: " + mlecznaNazwa.getText() + " producenta: " + mlecznaProducent.getText());
+                    }
                     break;
                 case "":
                     break;
@@ -208,19 +320,61 @@ public class KierownikGUI extends JFrame implements ActionListener {
             }
             switch (msg3) {
                 case "orzechy":
-                    if (!z_DodatkamiText.getText().isEmpty() && !z_dodatkamiCena.getText().isEmpty()&& !z_DodatkamiData.getText().isEmpty() && !z_DodatkamiNazwa.getText().isEmpty() && !z_DodatkamiProducent.getText().isEmpty())
+                    if (!z_DodatkamiText.getText().isEmpty() && !z_dodatkamiCena.getText().isEmpty()&& !z_DodatkamiData.getText().isEmpty() && !z_DodatkamiNazwa.getText().isEmpty() && !z_DodatkamiProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt1.setString (1, "Z_dodatkami");
+                            preparedStmt1.setString (2, z_DodatkamiText.getText());
+                            preparedStmt1.setString (3, "orzechy");
+                            preparedStmt1.setString (4, z_dodatkamiCena.getText());
+                            preparedStmt1.setString (5, z_DodatkamiData.getText());
+                            preparedStmt1.setString (6, z_DodatkamiNazwa.getText());
+                            preparedStmt1.setString (7, z_DodatkamiProducent.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + z_DodatkamiText.getText() + " czekolad z orzechami za: " + z_dodatkamiCena.getText() + " zł" +
-                                " ważnych do: " + z_DodatkamiData.getText() + " o nazwie: " + z_DodatkamiNazwa.getText() + " producenta: " + z_DodatkamiProducent.getText() );
+                                " ważnych do: " + z_DodatkamiData.getText() + " o nazwie: " + z_DodatkamiNazwa.getText() + " producenta: " + z_DodatkamiProducent.getText());
+                    }
                     break;
                 case "nadzienie":
-                    if (!z_DodatkamiText.getText().isEmpty() && !z_dodatkamiCena.getText().isEmpty()&& !z_DodatkamiData.getText().isEmpty() && !z_DodatkamiNazwa.getText().isEmpty() && !z_DodatkamiProducent.getText().isEmpty())
+                    if (!z_DodatkamiText.getText().isEmpty() && !z_dodatkamiCena.getText().isEmpty()&& !z_DodatkamiData.getText().isEmpty() && !z_DodatkamiNazwa.getText().isEmpty() && !z_DodatkamiProducent.getText().isEmpty()) {
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt1.setString (1, "Z_dodatkami");
+                            preparedStmt1.setString (2, z_DodatkamiText.getText());
+                            preparedStmt1.setString (3, "nadzienie");
+                            preparedStmt1.setString (4, z_dodatkamiCena.getText());
+                            preparedStmt1.setString (5, z_DodatkamiData.getText());
+                            preparedStmt1.setString (6, z_DodatkamiNazwa.getText());
+                            preparedStmt1.setString (7, z_DodatkamiProducent.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + z_DodatkamiText.getText() + " czekolad z nadzieniem za: " + z_dodatkamiCena.getText() + " zł" +
-                                " ważnych do: " + z_DodatkamiData.getText() + " o nazwie: " + z_DodatkamiNazwa.getText() + " producenta: " + z_DodatkamiProducent.getText() );
+                                " ważnych do: " + z_DodatkamiData.getText() + " o nazwie: " + z_DodatkamiNazwa.getText() + " producenta: " + z_DodatkamiProducent.getText());
+                    }
                     break;
                 case "bakalie":
-                    if (!z_DodatkamiText.getText().isEmpty() && !z_dodatkamiCena.getText().isEmpty()&& !z_DodatkamiData.getText().isEmpty() && !z_DodatkamiNazwa.getText().isEmpty() && !z_DodatkamiProducent.getText().isEmpty())
+                    if (!z_DodatkamiText.getText().isEmpty() && !z_dodatkamiCena.getText().isEmpty()&& !z_DodatkamiData.getText().isEmpty() && !z_DodatkamiNazwa.getText().isEmpty() && !z_DodatkamiProducent.getText().isEmpty()){
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call przyjmijDostawe(?,?,?,?,?,?,?)");
+                            preparedStmt1.setString (1, "Z_dodatkami");
+                            preparedStmt1.setString (2, z_DodatkamiText.getText());
+                            preparedStmt1.setString (3, "bakalie");
+                            preparedStmt1.setString (4, z_dodatkamiCena.getText());
+                            preparedStmt1.setString (5, z_DodatkamiData.getText());
+                            preparedStmt1.setString (6, z_DodatkamiNazwa.getText());
+                            preparedStmt1.setString (7, z_DodatkamiProducent.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
                         System.out.println("Dodałeś " + z_DodatkamiText.getText() + " czekolad z bakaliami za: " + z_dodatkamiCena.getText() + " zł" +
-                                " ważnych do: " + z_DodatkamiData.getText() + " o nazwie: " + z_DodatkamiNazwa.getText() + " producenta: " + z_DodatkamiProducent.getText() );
+                                " ważnych do: " + z_DodatkamiData.getText() + " o nazwie: " + z_DodatkamiNazwa.getText() + " producenta: " + z_DodatkamiProducent.getText());
+                    }
                     break;
                 case "":
                     break;
