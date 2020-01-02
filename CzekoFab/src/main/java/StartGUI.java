@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StartGUI extends JFrame implements ActionListener {
@@ -45,6 +48,7 @@ public class StartGUI extends JFrame implements ActionListener {
         administrator.addActionListener(this);
         administrator.setActionCommand(Actions.ADMINISTRATOR.name());
 
+        // ------------------------- AKCJA DOTYCZĄCA HASEŁ -----------------------------
         hasla1 = new ArrayList<String>();
         hasla2 = new ArrayList<String>();
         hasla3 = new ArrayList<String>();
@@ -52,7 +56,41 @@ public class StartGUI extends JFrame implements ActionListener {
         hasla2.add("hasłoKierownik");
         hasla3.add("hasłoAdministrator");
 
+        try {
+            PreparedStatement preparedStmt = Main.myCon.prepareStatement("select * from uzytkownicy where uzytkownik = 'pracownik'");
+            ResultSet rs = preparedStmt.executeQuery();
+            while (rs.next()){
+                hasla1.add(rs.getString("haslo"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Got an exception!");
+        }
+
+        try {
+            PreparedStatement preparedStmt = Main.myCon.prepareStatement("select * from uzytkownicy where uzytkownik = 'kierownik'");
+            ResultSet rs = preparedStmt.executeQuery();
+            while (rs.next()){
+                hasla2.add(rs.getString("haslo"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Got an exception!");
+        }
+
+        try {
+            PreparedStatement preparedStmt = Main.myCon.prepareStatement("select * from uzytkownicy where uzytkownik = 'administrator'");
+            ResultSet rs = preparedStmt.executeQuery();
+            while (rs.next()){
+                hasla3.add(rs.getString("haslo"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Got an exception!");
+        }
+
     }
+//------------------------------------------------------------------------------------------------------
 
     public void uruchomStartGUI(){
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

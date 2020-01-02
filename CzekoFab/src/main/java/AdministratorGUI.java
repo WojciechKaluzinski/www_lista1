@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class AdministratorGUI extends JFrame implements ActionListener {
 
@@ -74,6 +76,16 @@ public class AdministratorGUI extends JFrame implements ActionListener {
                     if (!haslo1.getText().isEmpty() && !haslo2.getText().isEmpty()) {
                         if (haslo1.getText().equals(haslo2.getText())) {
                             StartGUI.hasla1.add(haslo1.getText());
+                            PreparedStatement preparedStmt;
+                            try {
+                                preparedStmt = Main.myCon.prepareStatement("INSERT INTO uzytkownicy(uzytkownik,haslo)" + "VALUES (?,?)");
+                                preparedStmt.setString (1, "pracownik");
+                                preparedStmt.setString (2, haslo1.getText());
+                                preparedStmt.execute();
+                            } catch (SQLException ex) {
+                                System.err.println("Got an exception!");
+                            }
+
                             infoAdd.setText("Dodano nowego pracownika");
                             System.out.println("Dodano nowego pracownika, HASŁO: " + haslo1.getText());
                         }
@@ -84,6 +96,15 @@ public class AdministratorGUI extends JFrame implements ActionListener {
                     if (!haslo1.getText().isEmpty() && !haslo2.getText().isEmpty()) {
                         if (haslo1.getText().equals(haslo2.getText())) {
                             StartGUI.hasla2.add(haslo1.getText());
+                            PreparedStatement preparedStmt;
+                            try {
+                                preparedStmt = Main.myCon.prepareStatement("INSERT INTO uzytkownicy(uzytkownik,haslo)" + "VALUES (?,?)");
+                                preparedStmt.setString (1, "kierownik");
+                                preparedStmt.setString (2, haslo1.getText());
+                                preparedStmt.execute();
+                            } catch (SQLException ex) {
+                                System.err.println("Got an exception!");
+                            }
                             infoAdd.setText("Dodano nowego kierownika");
                             System.out.println("Dodano nowego kierownika, HASŁO: " + haslo1.getText());
                         }
@@ -92,8 +113,17 @@ public class AdministratorGUI extends JFrame implements ActionListener {
                     break;
                 case "Administrator":
                     if (!haslo1.getText().isEmpty() && !haslo2.getText().isEmpty()) {
-                        if (haslo1.getText() == haslo2.getText()) {
+                        if (haslo1.getText().equals(haslo2.getText())) {
                             StartGUI.hasla3.add(haslo1.getText());
+                            PreparedStatement preparedStmt;
+                            try {
+                                preparedStmt = Main.myCon.prepareStatement("INSERT INTO uzytkownicy(uzytkownik,haslo)" + "VALUES (?,?)");
+                                preparedStmt.setString (1, "administrator");
+                                preparedStmt.setString (2, haslo1.getText());
+                                preparedStmt.execute();
+                            } catch (SQLException ex) {
+                                System.err.println("Got an exception!");
+                            }
                             System.out.println("Dodano nowego administratora, HASŁO: " + haslo1.getText());
                             infoAdd.setText("Dodano nowego administratora");
                         }

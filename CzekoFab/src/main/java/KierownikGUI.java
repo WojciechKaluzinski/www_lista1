@@ -16,7 +16,8 @@ public class KierownikGUI extends JFrame implements ActionListener {
     JTextField gorzkaText,mlecznaText,z_DodatkamiText,gorzkaCena,mlecznaCena,z_dodatkamiCena,gorzkaData,mlecznaData,z_DodatkamiData,
     gorzkaNazwa,mlecznaNazwa,z_DodatkamiNazwa,gorzkaProducent,mlecznaProducent,z_DodatkamiProducent;
     JButton dodaj,przegladajMagazyn,pokazPrawiePrzeterminowane,podsumowanieMiesieczne;
-    JLabel gorzka,mleczna,z_dodatkami,ilosc,cena,data,nazwa,producent;
+    JLabel gorzka,mleczna,z_dodatkami,ilosc,cena,data,nazwa,producent,lista;
+    JScrollPane scrollableLista;
 
 
     KierownikGUI(){
@@ -65,6 +66,8 @@ public class KierownikGUI extends JFrame implements ActionListener {
         przegladajMagazyn = new JButton("PREGLĄDAJ MAGAZYN");
         pokazPrawiePrzeterminowane = new JButton("O KRÓTKIM TERMINIE WAŻNOŚCI");
         podsumowanieMiesieczne = new JButton("PODSUMOWANIE MIESIĘCZNE");
+        lista = new JLabel();
+        scrollableLista = new JScrollPane(lista);
 
 
         ilosc.setForeground(Color.black);
@@ -147,6 +150,10 @@ public class KierownikGUI extends JFrame implements ActionListener {
         add(dodaj);
         dodaj.setBounds(100, 350,200,30);
         dodaj.addActionListener(this);
+
+        /*add(lista);
+        lista.setBounds(350, 300, 800,250);
+        lista.add(scrollableLista,BorderLayout.CENTER);*/
 
     }
 
