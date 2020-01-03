@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PracownikGUI extends JFrame implements ActionListener {
 
@@ -114,10 +117,49 @@ public class PracownikGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gorzkaPrzegladaj) {
             System.out.println("Chcesz przeglądać gorzką czekoladę");
+            System.out.format("| %s | %s | %s | %s |%n","Producent: ", "Nazwa: ", "Zawartość kakao: ", "Cena: ");
+            try {
+                PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call wyswietlProdukt('Gorzka');");
+                ResultSet rs = preparedStmt1.executeQuery();
+                while (rs.next()){
+                    System.out.format("| %s | %s | %s | %s |%n",rs.getString("producent"),rs.getString("nazwa"),
+                            rs.getString("zawartosc_kakao"),rs.getString("cena"));
+                    // System.out.println(rs.getString("nazwa") + " " + rs.getString("ilosc"));
+                }
+
+            } catch (SQLException ex) {
+                System.err.println("Got an exception!");
+            }
         } if (e.getSource() == mlecznaPrzegladaj) {
             System.out.println("Chcesz przeglądać mleczną czekoladę");
+            System.out.format("| %s | %s | %s | %s |%n","Producent: ", "Nazwa: ", "Zawartość tłuszczu: ", "Cena: ");
+            try {
+                PreparedStatement preparedStmt2 = Main.myCon.prepareStatement("call wyswietlProdukt('Mleczna');");
+                ResultSet rs = preparedStmt2.executeQuery();
+                while (rs.next()){
+                    System.out.format("| %s | %s | %s | %s |%n",rs.getString("producent"),rs.getString("nazwa"),
+                            rs.getString("zawartosc_tluszczu"),rs.getString("cena"));
+                    // System.out.println(rs.getString("nazwa") + " " + rs.getString("ilosc"));
+                }
+
+            } catch (SQLException ex) {
+                System.err.println("Got an exception!");
+            }
         } if (e.getSource() == z_dodatkamiPrzegladaj) {
             System.out.println("Chcesz przeglądać czekoladę z dodatkami");
+            System.out.format("| %s | %s | %s | %s |%n","Producent: ", "Nazwa: ", "Dodatki: ", "Cena: ");
+            try {
+                PreparedStatement preparedStmt3 = Main.myCon.prepareStatement("call wyswietlProdukt('Z_dodatkami');");
+                ResultSet rs = preparedStmt3.executeQuery();
+                while (rs.next()){
+                    System.out.format("| %s | %s | %s | %s |%n",rs.getString("producent"),rs.getString("nazwa"),
+                            rs.getString("dodatki"),rs.getString("cena"));
+                    // System.out.println(rs.getString("nazwa") + " " + rs.getString("ilosc"));
+                }
+
+            } catch (SQLException ex) {
+                System.err.println("Got an exception!");
+            }
         }
         if (e.getSource() == sprzedaj) {
             String msg1 = (String) gorzkaCobo.getSelectedItem();
@@ -125,16 +167,53 @@ public class PracownikGUI extends JFrame implements ActionListener {
             String msg3 = (String) z_DodatkamiCobo.getSelectedItem();
             switch (msg1) {
                 case "50 %":
-                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 50% zawartości kakao, o nazwie: " + gorzkaNazwa.getText() );
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + gorzkaText.getText() + " gorzkich czekolad o 50% zawartości kakao, o nazwie: " + gorzkaNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "gorzka");
+                            preparedStmt1.setString (2, gorzkaText.getText());
+                            preparedStmt1.setString (3, "50");
+                            preparedStmt1.setString (4, gorzkaNazwa.getText());
+                            preparedStmt1.executeQuery();
+                           // ResultSet rs = preparedStmt1.executeQuery();
+                            //if (rs.next()){
+                              //  System.out.println(rs.getString("error"));
+                           // }
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "70 %":
-                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 70% zawartości kakao, o nazwie: " + gorzkaNazwa.getText() );
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + gorzkaText.getText() + " gorzkich czekolad o 70% zawartości kakao, o nazwie: " + gorzkaNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "gorzka");
+                            preparedStmt1.setString (2, gorzkaText.getText());
+                            preparedStmt1.setString (3, "70");
+                            preparedStmt1.setString (4, gorzkaNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "90 %":
-                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + gorzkaText.getText() + " gorzkich czekolad o 90% zawartości kakao, o nazwie: " + gorzkaNazwa.getText() );
+                    if (!gorzkaText.getText().isEmpty() && !gorzkaNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + gorzkaText.getText() + " gorzkich czekolad o 90% zawartości kakao, o nazwie: " + gorzkaNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "gorzka");
+                            preparedStmt1.setString (2, gorzkaText.getText());
+                            preparedStmt1.setString (3, "90");
+                            preparedStmt1.setString (4, gorzkaNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "":
                     break;
@@ -143,16 +222,49 @@ public class PracownikGUI extends JFrame implements ActionListener {
             }
             switch (msg2) {
                 case "18 %":
-                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 18% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText() );
+                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + mlecznaText.getText() + " mlecznych czekolad o 18% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "mleczna");
+                            preparedStmt1.setString (2, mlecznaText.getText());
+                            preparedStmt1.setString (3, "18");
+                            preparedStmt1.setString (4, mlecznaNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "20 %":
-                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 20% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText() );
+                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty()){
+                        System.out.println("Chcesz sprzedać " + mlecznaText.getText() + " mlecznych czekolad o 20% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "mleczna");
+                            preparedStmt1.setString (2, mlecznaText.getText());
+                            preparedStmt1.setString (3, "20");
+                            preparedStmt1.setString (4, mlecznaNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "25 %":
-                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + mlecznaText.getText() + " mlecznych czekolad o 25% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText() );
+                    if (!mlecznaText.getText().isEmpty()  && !mlecznaNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + mlecznaText.getText() + " mlecznych czekolad o 25% zawartości tłuszczu, o nazwie: " + mlecznaNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "mleczna");
+                            preparedStmt1.setString (2, mlecznaText.getText());
+                            preparedStmt1.setString (3, "25");
+                            preparedStmt1.setString (4, mlecznaNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "":
                     break;
@@ -161,16 +273,49 @@ public class PracownikGUI extends JFrame implements ActionListener {
             }
             switch (msg3) {
                 case "orzechy":
-                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z orzechami, o nazwie: " + z_DodatkamiNazwa.getText() );
+                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + z_DodatkamiText.getText() + " czekolad z orzechami, o nazwie: " + z_DodatkamiNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "z_dodatkami");
+                            preparedStmt1.setString (2, z_DodatkamiText.getText());
+                            preparedStmt1.setString (3, "orzechy");
+                            preparedStmt1.setString (4, z_DodatkamiNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "nadzienie":
-                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z nadzieniem, o nazwie: " + z_DodatkamiNazwa.getText() );
+                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty()){
+                        System.out.println("Chcesz sprzedać " + z_DodatkamiText.getText() + " czekolad z nadzieniem, o nazwie: " + z_DodatkamiNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "z_dodatkami");
+                            preparedStmt1.setString (2, z_DodatkamiText.getText());
+                            preparedStmt1.setString (3, "nadzienie");
+                            preparedStmt1.setString (4, z_DodatkamiNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "bakalie":
-                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty())
-                        System.out.println("Sprzedałeś " + z_DodatkamiText.getText() + " czekolad z bakaliami, o nazwie: " + z_DodatkamiNazwa.getText() );
+                    if (!z_DodatkamiText.getText().isEmpty()  && !z_DodatkamiNazwa.getText().isEmpty()) {
+                        System.out.println("Chcesz sprzedać " + z_DodatkamiText.getText() + " czekolad z bakaliami, o nazwie: " + z_DodatkamiNazwa.getText());
+                        try {
+                            PreparedStatement preparedStmt1 = Main.myCon.prepareStatement("call sprzedaj(?,?,?,?)");
+                            preparedStmt1.setString (1, "z_dodatkami");
+                            preparedStmt1.setString (2, z_DodatkamiText.getText());
+                            preparedStmt1.setString (3, "bakalie");
+                            preparedStmt1.setString (4, z_DodatkamiNazwa.getText());
+                            preparedStmt1.executeQuery();
+                        } catch (SQLException ex) {
+                            System.err.println("Got an exception!");
+                        }
+                    }
                     break;
                 case "":
                     break;

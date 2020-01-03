@@ -15,7 +15,7 @@ public class KierownikGUI extends JFrame implements ActionListener {
     JComboBox gorzkaCobo,mlecznaCobo,z_DodatkamiCobo;
     JTextField gorzkaText,mlecznaText,z_DodatkamiText,gorzkaCena,mlecznaCena,z_dodatkamiCena,gorzkaData,mlecznaData,z_DodatkamiData,
     gorzkaNazwa,mlecznaNazwa,z_DodatkamiNazwa,gorzkaProducent,mlecznaProducent,z_DodatkamiProducent;
-    JButton dodaj,przegladajMagazyn,pokazPrawiePrzeterminowane,podsumowanieMiesieczne;
+    JButton dodaj,przegladajMagazyn,pokazPrawiePrzeterminowane,podsumowanieMiesieczne, usunPrzeterminowane;
     JLabel gorzka,mleczna,z_dodatkami,ilosc,cena,data,nazwa,producent,lista;
     JScrollPane scrollableLista;
 
@@ -66,6 +66,7 @@ public class KierownikGUI extends JFrame implements ActionListener {
         przegladajMagazyn = new JButton("PREGLĄDAJ MAGAZYN");
         pokazPrawiePrzeterminowane = new JButton("O KRÓTKIM TERMINIE WAŻNOŚCI");
         podsumowanieMiesieczne = new JButton("PODSUMOWANIE MIESIĘCZNE");
+        usunPrzeterminowane = new JButton("USUŃ PRZETERMINOWANE");
         lista = new JLabel();
         scrollableLista = new JScrollPane(lista);
 
@@ -151,6 +152,10 @@ public class KierownikGUI extends JFrame implements ActionListener {
         dodaj.setBounds(100, 350,200,30);
         dodaj.addActionListener(this);
 
+        add(usunPrzeterminowane);
+        usunPrzeterminowane.setBounds(930, 330,250,30);
+        usunPrzeterminowane.addActionListener(this);
+
         /*add(lista);
         lista.setBounds(350, 300, 800,250);
         lista.add(scrollableLista,BorderLayout.CENTER);*/
@@ -167,12 +172,13 @@ public class KierownikGUI extends JFrame implements ActionListener {
           if (e.getSource() == przegladajMagazyn) {
 
               System.out.println("Chcesz przeglądać stan magazynu: ");
-              System.out.format("| %s | %s |%n","Nazwa: ","Ilość: ");
+              System.out.format("| %s | %s | %s | %s | %s |%n","Producent: ","Nazwa: ","Typ: ", "Specyfikacja: ", "Ilość: ");
               try {
                   PreparedStatement preparedStmt3 = Main.myCon.prepareStatement("call  przegladajMagazyn()");
                   ResultSet rs = preparedStmt3.executeQuery();
                   while (rs.next()){
-                      System.out.format("| %s | %2s |%n",rs.getString("nazwa"),rs.getString("ilosc"));
+                      System.out.format("| %s | %s | %s | %s | %s |%n",rs.getString("producent"),rs.getString("nazwa"),
+                              rs.getString("typ"),rs.getString("specyfikacja"),rs.getString("ilosc"));
                      // System.out.println(rs.getString("nazwa") + " " + rs.getString("ilosc"));
                   }
 
@@ -193,8 +199,19 @@ public class KierownikGUI extends JFrame implements ActionListener {
                 System.err.println("Got an exception!");
             }
         } if (e.getSource() == podsumowanieMiesieczne) {
-              //TODO: dodać "call podsumaowanieMiesieczne()"
             System.out.println("Chcesz zrobić podsumowanie miesięczne");
+            try {
+                PreparedStatement preparedStmt5 = Main.myCon.prepareStatement("call bilans()");
+                ResultSet rs = preparedStmt5.executeQuery();
+                while (rs.next()){
+                    System.out.println("Twój zysk w tym miesiącu to: " + rs.getString("bilans") + " zł.");
+                }
+            } catch (SQLException ex) {
+                System.err.println("Got an exception!");
+            }
+        } if (e.getSource() == usunPrzeterminowane) {
+            System.out.println("Chcesz usunąć przeterminowane czekolady");
+            //TODO: uruchomienie procedury usunPrzeterminowane;
         }
         if (e.getSource() == dodaj) {
             String msg1 = (String) gorzkaCobo.getSelectedItem();
