@@ -17,6 +17,7 @@ public class PracownikGUI extends JFrame implements ActionListener {
     JLabel gorzka,mleczna,z_dodatkami,ilosc,nazwa;
 
 
+
     PracownikGUI(){
         setSize(850, 500);
         setTitle("CzekoFab: okno pracownika");
@@ -176,10 +177,6 @@ public class PracownikGUI extends JFrame implements ActionListener {
                             preparedStmt1.setString (3, "50");
                             preparedStmt1.setString (4, gorzkaNazwa.getText());
                             preparedStmt1.executeQuery();
-                           // ResultSet rs = preparedStmt1.executeQuery();
-                            //if (rs.next()){
-                              //  System.out.println(rs.getString("error"));
-                           // }
                         } catch (SQLException ex) {
                             System.err.println("Got an exception!");
                         }

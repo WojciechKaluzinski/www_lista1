@@ -211,7 +211,12 @@ public class KierownikGUI extends JFrame implements ActionListener {
             }
         } if (e.getSource() == usunPrzeterminowane) {
             System.out.println("Chcesz usunąć przeterminowane czekolady");
-            //TODO: uruchomienie procedury usunPrzeterminowane;
+            try {
+                PreparedStatement preparedStmt5 = Main.myCon.prepareStatement("call  usunPrzeterminowane()");
+                preparedStmt5.executeQuery();
+            } catch (SQLException ex) {
+                System.err.println("Got an exception!");
+            }
         }
         if (e.getSource() == dodaj) {
             String msg1 = (String) gorzkaCobo.getSelectedItem();
