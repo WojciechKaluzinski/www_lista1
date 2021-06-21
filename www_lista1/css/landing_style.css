@@ -1,0 +1,126 @@
+html {
+    height: 90%;
+}
+
+body {
+    background: url(../pliki/landing-bg.jpg) no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 80%;
+    position: relative;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    animation: slide linear 1.5s;
+
+}
+
+@keyframes slide {
+    0% {
+        left: 0;
+    }
+    25% {
+        left: -50px;
+    }
+    75% {
+        left: 10px;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.header {
+    text-align: center;
+}
+h1{
+    font-family: 'Slabo 27px', serif;
+    font-size: 5vw;
+}
+h3{
+    font-family: 'Slabo 27px', serif;
+    font-size: 3vw;
+}
+.header h1 {
+    color: floralwhite;
+}
+
+.name {
+    text-align: center;
+}
+
+.name h3{
+    color: floralwhite;
+}
+
+.button{
+    text-align: center;
+}
+
+
+a {
+    background-color: #466494;
+    box-shadow: 0 5px 0 #415980;
+    color: floralwhite;
+    font-family: 'Slabo 27px', serif;
+    font-size: 3vw;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 1em;
+}
+
+a:hover {
+    background-color: gray;
+    cursor: pointer;
+    box-shadow: 0 5px 0 darkgrey;
+}
+
+a:active {
+    box-shadow: none;
+    top: 5px;
+}
+
+/*// Large devices (desktops, less than 1200px)*/
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 10vw;
+    }
+    h1 {
+        font-size: 6vw;
+    }
+    a {
+        font-size: 3vw;
+    }
+}
+
+/*// Medium devices (tablets, less than 992px)*/
+@media (max-width: 992px) {
+    h1 {
+        font-size: 20vw;
+    }
+    h1 {
+        font-size: 12vw;
+    }
+    a {
+        font-size: 3vw;
+    }
+
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+h1 {
+    font-family: 'Slabo 27px', serif;
+    text-align: center;
+}
+
+.footer {
+    text-align: left;
+    font-family: 'Slabo 27px', serif;
+    font-weight: normal;
+}
+
+.control {
+    text-align: center;
+}
+.container {
+    background-color: floralwhite;
+    padding: 30px;
+    filter: drop-shadow(2px 4px 6px black);
+}
+.button {
+    background-color: #466494;
+    box-shadow: 0 5px 0 #415980;
+    color: floralwhite;
+    font-family: 'Slabo 27px', serif;
+    font-size: 1vw;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 1em;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#mainContainer {
+    margin: auto;
+    width: 100%;
+}
+
+#infoArea {
+    font-family: 'Slabo 27px', serif;
+    font-weight: normal;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    display: table-cell;
+    vertical-align: top;
+    border: 1px solid;
+    width: 40%;
+}
+
+#graphicArea {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 60%;
+}
+
+#photoGallery {
+    font-size: 14px;
+    font-weight: normal;
+    color: black;
+    text-align: justify;
+    padding: 10px;
+    vertical-align: top;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img_button {
+    margin: 10px;
+}
+#gameCanvasMobile{
+    display: none;
+    background-color: red;
+}
+#gameCanvas{
+    background-color: red;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait){
+    #mainContainer, #photoGallery {
+        margin: auto;
+        width: 100%;
+        border: none;
+    }
+
+    #infoArea {
+        display: block;
+        border: none;
+        width: 100%;
+        font-size: 24px;
+    }
+    .img_button, .button{
+        -webkit-appearance: none;
+    }
+    #gameCanvas{
+        display: none;
+    }
+    #gameCanvasMobile{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 900px) and (orientation: landscape){
+    #mainContainer, #photoGallery {
+        margin: auto;
+        width: 100%;
+        border: none;
+    }
+    #mainContainer{
+        display: flex;
+        max-height: 400px;
+    }
+    #graphicArea{
+        border: none;
+    }
+
+    #infoArea {
+        display: block;
+        border: none;
+        width:120%;
+        font-size: 20px;
+        overflow: auto;
+    }
+    .img_button, .button{
+        -webkit-appearance: none;
+    }
+    #gameCanvas{
+        display: none;
+    }
+    #gameCanvasMobile{
+        display: block;
+    }
+}

@@ -1,0 +1,142 @@
+$font-stack: 'Slabo 27px', serif;
+$text-color: floralwhite;
+
+$font-sizes-h1: (
+        null: 6vw,
+        1200px: 7vw,
+        992px : 8vw
+);
+
+$font-sizes-h3: (
+        null: 4vw,
+        1200px: 5vw,
+        992px: 6vw
+);
+
+$font-sizes-a: (
+        null: 3vw,
+        1200px : 4vw,
+        992px: 4vw
+);
+
+@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;
+    } @else {
+      @media screen and (max-width: $fs-breakpoint) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+}
+
+%headers {
+  font-family: $font-stack;
+}
+
+%text-align {
+  text-align: center;
+}
+
+html {
+  height: 90%;
+}
+
+body {
+  background: url(../pliki/landing-bg.jpg) no-repeat fixed center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+h1 {
+  @extend %headers;
+  @include font-size($font-sizes-h1);
+}
+
+h3 {
+  @extend %headers;
+  @include font-size($font-sizes-h3);
+}
+
+a {
+  @include font-size($font-sizes-a);;
+  background-color: #466494;
+  box-shadow: 0 5px 0 #415980;
+  color: $text-color;
+  font-family: $font-stack;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 1em;
+}
+
+a:hover {
+  background-color: gray;
+  cursor: pointer;
+  box-shadow: 0 5px 0 darkgrey;
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+.visitors_counter{
+  font-family: $font-stack;
+  font-size: large;
+  color: red;
+}
+.container {
+  height: 100%;
+  width: 80%;
+  position: relative;
+  margin: auto;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  animation: slide linear 1.5s;
+}
+
+@keyframes slide {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: -50px;
+  }
+  75% {
+    left: 10px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.header {
+  h1 {
+    color: $text-color;
+  }
+}
+
+.name {
+  h3 {
+    color: $text-color;
+  }
+}
+
+.button, .name, .header {
+  @extend %text-align
+}
+
+
+
+
+
+
+
+
+

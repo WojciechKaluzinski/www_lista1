@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="highlight.js" level="application" />
+    <orderEntry type="library" name="f0e72d301dd1cf13b17fcd6db3f08a76" level="application" />
+    <orderEntry type="library" name="6b49b33bc88cd5aa6a1edd144f36e263" level="application" />
+    <orderEntry type="library" name="58705c05d3dc2594d45bf7cb99e5ecac" level="application" />
+    <orderEntry type="library" name="mathjax" level="application" />
+  </component>
+</module>

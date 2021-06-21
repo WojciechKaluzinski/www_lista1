@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Gra Puzzle</title>
+    <meta name="description"
+          content="Nazywam się Wojciech Kałuziński, studiuję informatykę na WPPT Politechniki Wrocławskiej. ">
+    <meta name="keywords"
+          content="Wojciech, Kałuziński, Informatyka, WPPT, PWR, IKAR, Frontend, zabytkowa motoryzacja, geometria, studia, hobby, Oldtimers-Web, muzyka, filmowanie">
+    <meta name="author" content="Wojciech Kałuziński">
+    <link rel="shortcut icon" href="../pliki/logo.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/puzzle_style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+
+
+<section class="container">
+    <div style="display:none;">
+        <img id="puzzleImage">
+    </div>
+
+    <div id="mainContainer">
+
+
+        <div id="graphicArea">
+            <canvas id="gameCanvas" width="400" height="400"
+                    style="border:1px solid #000000;">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+            <canvas id="gameCanvasMobile" width="350" height="350"
+                    style="border:1px solid #000000;">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+        </div>
+        <div id="infoArea">
+
+            <h1>LOGICZNA GRA ODPRĘŻAJĄCA</h1>
+            <p class="control">
+                <label>Wybierz poziom trudności: </label> <input type="number" id="sliderSelectSize" name="points"
+                                                              min="3" max="8" value="4">
+                <br>
+                <span id="puzzleSize"></span>
+            </p>
+            <span>
+           Aby rozpocząć, naciśnij "START"
+        </span>
+            <p class="control">
+                <input type="button" class="button" id="buttonNewGame" value="START">
+            </p>
+
+            <div id="photoGallery">
+                <button class="img_button">
+                    <img src="../img/organy1-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy2-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy3-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy4-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy5-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy6-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy7-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy8-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy9-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy10-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy11-min.jpg" width="50" height="50"/>
+                </button>
+                <button class="img_button">
+                    <img src="../img/organy12-min.jpg" width="50" height="50"/>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+<script src="../js/puzzle.js"></script>
+</html>

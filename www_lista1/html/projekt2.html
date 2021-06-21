@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Projekt | Strony Internetowe</title>
+    <meta name="description"
+          content="Nazywam się Wojciech Kałuziński, studiuję informatykę na WPPT Politechniki Wrocławskiej. ">
+    <meta name="keywords"
+          content="Wojciech, Kałuziński, Informatyka, WPPT, PWR, IKAR, Frontend, zabytkowa motoryzacja, geometria, studia, hobby, Oldtimers-Web, muzyka, filmowanie">
+    <meta name="author" content="Wojciech Kałuziński">
+    <link rel="shortcut icon" href="../pliki/logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<noscript>
+    <nav class="header">
+        <a href="index.html" class="logo">WK</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn"/>
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="strona_glowna.html"><span>Strona Główna</span></a></li>
+            <li class="dropdown">
+                <button class="dropbtn active">Projekty</button>
+                <div class="dropdown-content">
+                    <a href="projekt1.html">Projekt 1</a>
+                    <a href="#">Projekt 2</a>
+                    <a href="projekt3.html">Projekt 3</a>
+                </div>
+            </li>
+            <li><a href="moje_zainteresowania.html"><span>O Mnie</span></a></li>
+            <li><a href="moje_hobby.html"><span>Hobby</span></a></li>
+        </ul>
+    </nav>
+</noscript>
+
+<nav class="header" id="myMenu">
+    <a href="index.html" class="logo">WK</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="menu-icon" onclick="menuFunction()"><span
+            class="navicon"></span></a>
+    <ul class="menu">
+        <li><a href="strona_glowna.html"><span>Strona Główna</span></a></li>
+        <li class="dropdown">
+            <button class="dropbtn active">Projekty</button>
+            <div class="dropdown-content">
+                <a href="projekt1.html">Projekt 1</a>
+                <a href="#">Projekt 2</a>
+                <a href="projekt3.html">Projekt 3</a>
+            </div>
+        </li>
+        <li><a href="moje_zainteresowania.html"><span>O Mnie</span></a></li>
+        <li><a href="moje_hobby.html"><span>Hobby</span></a></li>
+    </ul>
+</nav>
+
+<section class="container">
+    <div class="title-section">
+        <div class="title">
+            <h1>STRONY INTERNETOWE</h1>
+        </div>
+        <div class="photo">
+            <img src="../pliki/strony1.png" alt="strony"></div>
+    </div>
+</section>
+
+<section class="container">
+    <p>Statyczne strony internetowe stworzone za pomocą HTML, CSS, JS, Bootstrap oraz Wordpress dla prywatnych klientów.
+        Od niedawna pracuję również w firmie VM.PL, w której obecnie zajmuję się obsługą strony internetowej.
+    </p>
+</section>
+
+<section class="container">
+    <h3>Fragment kodu CSS, stylizującego jedną ze stworzonych przeze mnie stron internetowych: </h3>
+    <div class="scroll code">
+        <script src="https://gist.github.com/WojciechKaluzinski/f0e72d301dd1cf13b17fcd6db3f08a76.js"></script>
+        <!--		<pre><code class="language-css">
+        .fa-facebook-f:hover {
+            color: #143f90 !important;
+        }
+
+        .hov:hover {
+            color: #143f90 !important;
+        }
+
+        .footer {
+            background: #3d3c3c;
+            padding-bottom: 10px;
+            bottom: 0px;
+            width: 100%;
+            border-bottom: 1px solid #CCCCCC;
+            border-top: 50px solid #ffffff;
+            clear: both;
+            margin-top: 30px;
+            position: relative;
+            height: auto;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer img {
+            max-width: 500px;
+            height: 200px;
+            margin-top: 50px;
+            margin-right: 400px;
+        }
+
+        .footer h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 27px;
+            padding: 40px 0 0px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .footer h4 {
+            color: white;
+            font-size: 2em;
+            line-height: 38px;
+            padding: 40px 0 10px;
+            font-family: cursive;
+            font-weight: lighter
+        }
+
+        .footer ul {
+            font-size: 13px;
+            list-style-type: none;
+            margin-left: 0;
+            margin-top: 100px;
+            color: #7F8C8D;
+            padding: 0 0 8px 0;
+        }
+
+        .email {
+            border-bottom: 3px solid #fff;
+        }
+
+        .footer ul li a {
+            padding: 0 0 25px 0;
+            display: block;
+            font-size: medium;
+        }
+
+        .footer a {
+            color: white;
+            font-weight: lighter;
+        }
+
+        .footer p {
+            color: white;
+            font-weight: lighter;
+        }
+
+        .footer a:hover {
+            color: #143f90;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .supportLi h4 {
+            font-size: 20px;
+            font-weight: lighter;
+            line-height: normal;
+            margin-bottom: 0 !important;
+            padding-bottom: 0;
+        }
+
+        .bg-gray {
+            box-shadow: 0 1px 0 #B4B3B3;
+        }
+
+
+        .footer a {
+            color: #78828D
+        }
+
+        .footer-bottom {
+            margin-top: 2em;
+            border-top: 1px solid #DDDDDD;
+            padding-top: 20px;
+            padding-bottom: 60px;
+        }
+
+        .footer-bottom p.pull-left {
+            padding-top: 6px;
+            font-size: 0.75em
+        }
+
+        .navbar {
+            background: #3d3c3c;
+        }
+
+        .navbar-brand {
+            margin-left: 30px;
+        }
+
+        .img-slider {
+            margin-top: 30px;
+            margin-bottom: 40px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slider-text {
+            text-shadow: -1px 0 black, 0 1px black,
+            1px 0 black, 0 -1px black
+        }
+
+        .figure-img {
+            width: 350px;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .blue-box {
+            background: #3d3c3c;
+            height: 60px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .f-column {
+            margin: 10px 20px;
+        }
+
+        #rect-img {
+            width: 350px;
+            min-width: 30%;
+            max-width: 100%;
+            height: auto;
+            margin-top: 30px;
+
+
+        }
+
+        #contact-button {
+            background: #143f90;
+            margin-top: 50px;
+        }
+
+        #contact-info{
+            margin-top: 40px;
+        }
+
+        #contact-button:hover {
+            background: #3d3c3c;
+        !important;
+        }
+
+        #ofer-img{
+            width: 100%;
+            max-height: 400px;
+            border-top: 10px solid #ffffff;
+            margin-bottom: 30px;
+            object-fit: cover;
+        }
+
+        .ofer-col{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        h5 {
+            color: #3d3c3c;
+        }
+         .img-slider{
+             height: 100%;
+             width: 100%;
+         }
+                </code></pre>-->
+    </div>
+</section>
+
+<section class="container">
+    <div class="photos">
+        <div class="photo1">
+            <img src="../pliki/strony2.png" alt="strony"/>
+        </div>
+        <div class="photo1">
+            <img src="../pliki/strony3.png" alt="strony"/>
+        </div>
+    </div>
+</section>
+
+<section class="container link" style="text-align: center">
+    <h3>Chcesz zobaczyć więcej moich projektów? <br> Wbij na mojego
+        <a href="https://github.com/WojciechKaluzinski" target="_blank">
+            GitHuba </a> !!!</h3>
+</section>
+
+<section class="container link" style="text-align: center">
+    <h3>Chcesz się odprężyć? <br> Zagraj w
+        <a href="puzzle.html" target="_top">PUZZLE </a>
+        lub w
+        <a href="../pong/zad3.html" target="_top">PONGA </a> !!!</h3>
+
+</section>
+
+<footer class="footer-distributed">
+
+    <div class="footer-right">
+        <a href="https://www.facebook.com/profesorprzecinek/" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.youtube.com/channel/UC4QRzcsAkI_qy0wR-wwHXsw" target="_blank"><i class="fa fa-youtube"></i></a>
+        <a href="mailto:profesorprzecinek@wp.pl"><i class="fa fa-envelope"></i></a>
+        <a href="https://github.com/WojciechKaluzinski" target="_blank"><i class="fa fa-github"></i></a>
+    </div>
+
+    <div class="footer-left">
+
+        <p class="footer-links">
+            <a href="#"><span>Główna</span></a>
+            <a href="moje_zainteresowania.html"><span>O Mnie</span></a>
+            <a href="moje_hobby.html"><span>Hobby</span></a>
+        </p>
+
+        <div class="tooltip"><p>Wojciech Kałuziński &copy; 2021</p>
+            <span class="tooltiptext">Obrazy zaczerpnięte z: https://unsplash.com/</span>
+        </div>
+    </div>
+
+</footer>
+
+
+</body>
+<script src="../css/prism.js"></script>
+<script src="../js/menu.js"></script>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wzory matematyczne</title>
+    <meta name="description"
+          content="Nazywam się Wojciech Kałuziński, studiuję informatykę na WPPT Politechniki Wrocławskiej. ">
+    <meta name="keywords"
+          content="Wojciech, Kałuziński, Informatyka, WPPT, PWR, IKAR, Frontend, zabytkowa motoryzacja, geometria, studia, hobby, Oldtimers-Web, muzyka, filmowanie">
+    <meta name="author" content="Wojciech Kałuziński">
+    <link rel="shortcut icon" href="../pliki/logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+ "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+});
+</script>
+
+</head>
+<body>
+
+<noscript>
+    <nav class="header">
+        <a href="index.html" class="logo">WK</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn"/>
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="strona_glowna.html"><span>Strona Główna</span></a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Projekty</button>
+                <div class="dropdown-content">
+                    <a href="projekt1.html">Projekt 1</a>
+                    <a href="projekt2.html">Projekt 2</a>
+                    <a href="projekt3.html">Projekt 3</a>
+                </div>
+            </li>
+            <li><a href="moje_zainteresowania.html"><span>O Mnie</span></a></li>
+            <li><a href="moje_hobby.html"><span>Hobby</span></a></li>
+        </ul>
+    </nav>
+</noscript>
+
+<nav class="header" id="myMenu">
+    <a href="index.html" class="logo">WK</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="menu-icon" onclick="menuFunction()"><span
+            class="navicon"></span></a>
+    <ul class="menu">
+        <li><a href="strona_glowna.html"><span>Strona Główna</span></a></li>
+        <li class="dropdown">
+            <button class="dropbtn">Projekty</button>
+            <div class="dropdown-content">
+                <a href="projekt1.html">Projekt 1</a>
+                <a href="projekt2.html">Projekt 2</a>
+                <a href="projekt3.html">Projekt 3</a>
+            </div>
+        </li>
+        <li><a href="moje_zainteresowania.html"><span>O Mnie</span></a></li>
+        <li><a href="moje_hobby.html"><span>Hobby</span></a></li>
+    </ul>
+</nav>
+
+<section class="container">
+    <div class="title-section">
+        <div class="title">
+            <h1>MATEMATYKA DYSKRETNA - liczby specjalne</h1>
+        </div>
+        <div class="photo">
+            <img src="../pliki/matematyka.jpg" alt="md"></div>
+    </div>
+</section>
+
+<section class="container" id="front-end">
+    <div class="subpages4">
+        <div class="left link">
+            <h3>WSTĘP: </h3>
+            <p><strong> Matematyka dyskretna </strong> to zbiorcza nazwa działów <strong> matematyki, </strong>
+                zajmujących się badaniem struktur nieciągłych,
+                czyli skończonych lub co najwyżej przeliczalnych. Matematyka dyskretna stała się popularna w ostatnich
+                latach dzięki zastosowaniom w <strong> informatyce, </strong> która w sposób naturalny zajmuje się
+                jedynie strukturami
+                skończonymi. Oto niektóre działy i tematy mające bardzo silny związek z matematyką dyskretną: </p>
+
+            <ul>
+                <li>logika,</li>
+                <li> teoria mnogości,</li>
+                <li> algebra struktur skończonych,</li>
+                <li> algebra liniowa,</li>
+                <li> kombinatoryka,</li>
+                <li> teoria liczb,</li>
+                <li> algorytmika,</li>
+                <li> teoria informacji,</li>
+                <li> złożoność obliczeniowa,</li>
+                <li> rachunek prawdopodobieństwa,</li>
+                <li> teoria grafów,</li>
+                <li> teoria i częściowych porządków.</li>
+            </ul>
+            <p><a href="https://cs.pwr.edu.pl/cichon/2020_21_b/MD.php" target="_blank">...dowiedz się więcej...</a></p>
+        </div>
+        <div class="right ">
+            <img src="../pliki/matematyka2.jpg" alt="md"/>
+        </div>
+    </div>
+</section>
+
+
+<section class="container">
+    <div class="math">
+        <ol>
+            <li>
+                <p>Ciąg Fibonacciego:
+                    \(F_{n+2} = F_{n}+F_{n+1}\)</p>
+            </li>
+            <li>
+                <p>Tw.
+                    \(\mathrm{nwd}(F_{n+1},F_n) = 1\)</p>
+            </li>
+            <li>
+                <p>Obserwacja:
+                    \[\begin{bmatrix} F_{n+1} \\ F_n \end{bmatrix}
+                    =
+                    \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} \circ
+                    \begin{bmatrix} F_n \\ F_{n-1} \end{bmatrix}\]</p>
+            </li>
+            <li>
+                <p>Wniosek:
+                    \[\begin{bmatrix} F_{n+1} \\ F_n \end{bmatrix}
+                    =
+                    \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^n \circ
+                    \begin{bmatrix} 1 \\ 0 \end{bmatrix}\]</p>
+            </li>
+            <hr>
+            <li>
+                <p>Wniosek: (wzór Binet'a)
+                    \[F_n = \frac{1}{\sqrt{5}} \left(\left(\frac{\sqrt{5}+1}{2}\right)^n + (-1)^{n+1}
+                    \left(\frac{\sqrt{5}-1}{2}\right)^n\right)\]</p>
+            </li>
+            <hr>
+            <li>
+                <p>Fakt:
+                    \[\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^n =
+                    \begin{bmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{bmatrix}\]</p>
+            </li>
+            <li>
+                <p>Wniosek (Cassini):
+                    \(F_{n+1}F_{n-1} - \left(F_n\right)^2 = (-1)^n\)</p>
+            </li>
+            <li>
+                <p>Wniosek:
+                    \(F_{n+m} = F_{n+1} F_m + F_n F_{m-1}\)</p>
+            </li>
+            <li>
+                <p>Tw:
+                    \(\sum_a \binom{n-a}{a} = F_{n+1}\)</p>
+            </li>
+            <li>
+                <p>Def. (Liczby Stirlinga II rodzaju) <br>
+                    \[\displaystyle {n \brace k} = |\{\mathcal{P}: |\mathcal{P}|=k \land \mathcal{P} \mbox{ jest
+                    partycją zbioru } [n]\}|\]</p>
+            </li>
+            <li>
+                <p>Przykłady (dla \(n\geq 1\)):
+                    \(\displaystyle {n \brace n} = 1, \displaystyle {n \brace n} = 1, \displaystyle {n \brace n-1} =
+                    \binom{n}{2}, \displaystyle {n \brace 2} = 2^{n-1} - 1\)</p>
+            </li>
+            <li>
+                <p>Tw. Niech \(Sur(A,B)\) oznacza zbiór wszystkich surjekcji ze zbioru \([A]\) na zbiór \([B]\). Wtedy:
+                    <br>
+                    \[\displaystyle {n \brace k} = \frac{1}{k!} |Sur([n],[k])|.\]</p>
+            </li>
+        </ol>
+
+    </div>
+    <hr>
+    <p>\[(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}, \quad \text{ dla } n\in\mathbb{N}\]</p>
+    <hr>
+</section>
+
+<section class="container">
+    <iframe style="width: 100%; min-height: 500px" id="app-container" src="http://localhost:63412/#/"></iframe>
+</section>
+
+<footer class="footer-distributed">
+
+    <div class="footer-right">
+        <a href="https://www.facebook.com/profesorprzecinek/" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.youtube.com/channel/UC4QRzcsAkI_qy0wR-wwHXsw" target="_blank"><i class="fa fa-youtube"></i></a>
+        <a href="mailto:profesorprzecinek@wp.pl"><i class="fa fa-envelope"></i></a>
+        <a href="https://github.com/WojciechKaluzinski" target="_blank"><i class="fa fa-github"></i></a>
+    </div>
+
+    <div class="footer-left">
+
+        <p class="footer-links">
+            <a href="#"><span>Główna</span></a>
+            <a href="moje_zainteresowania.html"><span>O Mnie</span></a>
+            <a href="moje_hobby.html"><span>Hobby</span></a>
+        </p>
+
+        <div class="tooltip"><p>Wojciech Kałuziński &copy; 2021</p>
+            <span class="tooltiptext">Obrazy zaczerpnięte z: https://unsplash.com/</span>
+        </div>
+    </div>
+
+</footer>
+
+
+</body>
+<script src="../css/prism.js"></script>
+<script src="../js/menu.js"></script>
+</html>

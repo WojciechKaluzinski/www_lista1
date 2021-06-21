@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Projekt | Oldtimers</title>
+    <meta name="description"
+          content="Nazywam się Wojciech Kałuziński, studiuję informatykę na WPPT Politechniki Wrocławskiej. ">
+    <meta name="keywords"
+          content="Wojciech, Kałuziński, Informatyka, WPPT, PWR, IKAR, Frontend, zabytkowa motoryzacja, geometria, studia, hobby, Oldtimers-Web, muzyka, filmowanie">
+    <meta name="author" content="Wojciech Kałuziński">
+    <link rel="shortcut icon" href="../pliki/logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<noscript>
+    <nav class="header">
+        <a href="index.html" class="logo">WK</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn"/>
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="strona_glowna.html"><span>Strona Główna</span></a></li>
+            <li class="dropdown">
+                <button class="dropbtn active">Projekty</button>
+                <div class="dropdown-content">
+                    <a href="#">Projekt 1</a>
+                    <a href="projekt2.html">Projekt 2</a>
+                    <a href="projekt3.html">Projekt 3</a>
+                </div>
+            </li>
+            <li><a href="moje_zainteresowania.html"><span>O Mnie</span></a></li>
+            <li><a href="moje_hobby.html"><span>Hobby</span></a></li>
+        </ul>
+    </nav>
+</noscript>
+
+<nav class="header" id="myMenu">
+    <a href="index.html" class="logo">WK</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="menu-icon" onclick="menuFunction()"><span
+            class="navicon"></span></a>
+    <ul class="menu">
+        <li><a href="strona_glowna.html"><span>Strona Główna</span></a></li>
+        <li class="dropdown">
+            <button class="dropbtn active">Projekty</button>
+            <div class="dropdown-content">
+                <a href="#">Projekt 1</a>
+                <a href="projekt2.html">Projekt 2</a>
+                <a href="projekt3.html">Projekt 3</a>
+            </div>
+        </li>
+        <li><a href="moje_zainteresowania.html"><span>O Mnie</span></a></li>
+        <li><a href="moje_hobby.html"><span>Hobby</span></a></li>
+    </ul>
+</nav>
+
+<section class="container">
+    <div class="title-section">
+        <div class="title">
+            <h1>OLDTIMERS-WEB</h1>
+        </div>
+        <div class="photo">
+            <img src="../pliki/oldtimers1.png" alt="oldtimers"></div>
+    </div>
+</section>
+
+<section class="container">
+    <p>Aplikacja webowa stworzona do organizacji rajdów pojazdów zabytkowych. Jej zadaniem jest gromadzenie i obliczanie
+        wyników poszczególnych konkurencji. Głównym jej założeniem jest łatwość obsługi dla osób starszych. Została
+        napisana przy użyciu frameworku Django. Wraz z aplikacją webową Oldtimers-Web powstała również aplikacja
+        Oldtimers-App, służąca do odczytywania kodu załogi i przeprowadzania danej konkurencji.
+    </p>
+</section>
+
+<section class="container">
+    <h3>Fragment kodu służącego do generowania i edytowania konkurencji: </h3>
+    <div class="scroll code">
+        <script src="https://gist.github.com/WojciechKaluzinski/6b49b33bc88cd5aa6a1edd144f36e263.js"></script>
+        <!--	<pre><code class="language-html">
+        <div class="forms-row">
+            <h2>EDYCJA KONKURENCJI</h2>
+            <form method="post" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="text-align: center; margin: 30px">
+                    <h5>GENERUJ KODY QR KONKURENCJI</h5>
+                    <span>
+                        <input title="GENERUJ KODY QR KONKURENCJI" type="submit" name="what_todo" id="competitions_qr"
+                               value="make_competitions_qr" onclick="return generateQR(this.id)">
+                    </span>
+                </div>
+            </form>
+
+            <h4>CHCĘ DODAĆ KONKURENCJE</h4>
+            <div class="add-competitions">
+                    <span>
+                        <label for="add_effi"><h4>Test sprawnosciowy:</h4></label>
+                        <button type="button" name="what_todo"
+                                class="form-control" id="add_effi" alt="brak zdjęcia"
+                                data-toggle="modal" data-target="#effiModal"></button>
+                    </span>
+                <span>
+                    <label for="add_know"><h4>Test wiedzy:</h4></label>
+                        <button type="button" name="what_todo"
+                                class="form-control" id="add_know" alt="brak zdjęcia"
+                                data-toggle="modal" data-target="#knowModal"></button>
+                    </span>
+                <span>
+                    <label for="add_reg"><h4>Jazda na regularność:</h4></label>
+                        <button type="button" name="what_todo"
+                                class="form-control" id="add_reg" alt="brak zdjęcia"
+                                data-toggle="modal" data-target="#regModal"></button>
+                    </span>
+                <span>
+                    <label for="add_time"><h4>Jazda na czas:</h4></label>
+                        <button type="button" name="what_todo"
+                                class="form-control" id="add_time" alt="brak zdjęcia"
+                                data-toggle="modal" data-target="#timeModal"></button>
+                    </span>
+            </div>
+
+            {% if not competitions %}
+                <h2>BRAK DODANYCH KONKURENCJI</h2>
+            {% else %}
+                <h4>CHCĘ MODYFIKOWAĆ KONKURENCJE</h4>
+                {% for row in competitions %}
+                    <div class="row" style="margin: auto">
+                        {% for competition in row %}
+                            <div class="col col-xl-2 col-lg-4 col-md-12">
+                                <div class="edit-btn">
+                                    <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#modal_competition{{ competition.id }}">
+                                        <strong> {{ competition.name }} </strong>
+                                    </button>
+                                </div>
+
+                                <div class="modal" id="modal_competition{{ competition.id }}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">
+                                                    Konkurencja: {{ competition.name }} <br> Typ
+                                                    konkurencji: {{ competition.type }}</h4>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    &times;
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form method="post" class="form" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <input type="text" name="what_todo" value="modify_competition" hidden>
+                                                    <div class="form-group">
+                                                        <input type="number" name="id"
+                                                               value="{{ competition.id }}"
+                                                               style="display: none; padding: 0; margin: 0;"
+                                                               readonly>
+                                                        <label for="name">Nazwa konkurencji:</label>
+                                                        <input type="text" name="name"
+                                                               class="form-control" id="name"
+                                                               value="{{ competition.name }}"
+                                                               placeholder="Podaj nazwę konkurencji" required="required">
+
+                                                        {% comment %}<label for="localization">Lokalizacja:</label>
+                                                        <input type="text" name="localization"
+                                                               class="form-control" id="localization"
+                                                               value="{{ competition.localization }}"
+                                                               placeholder="Podaj lokalizację">{% endcomment %}
+
+                                                        <label for="description">Opis Konkurencji:</label>
+                                                        <textarea name="description"
+                                                                  class="form-control" id="description"
+                                                                  placeholder="Podaj opis konkurencji"
+                                                                  required="required">{{ competition.description }}</textarea>
+
+                                                        <label for="absence_points">Punkty za nieobecność:</label>
+                                                        <input type="number" min="0" max="1000" name="absence_points"
+                                                               class="form-control" id="absence_points"
+                                                               value="{{ competition.absence_points }}"
+                                                               placeholder="Wpisz liczbę punktów za nieobecność"
+                                                               required="required">
+
+                                                        <label for="max_ranking_points">Maksymalna liczba punktów
+                                                            rankingowych:</label>
+                                                        <input type="number" min="0" max="1000" name="max_ranking_points"
+                                                               class="form-control" id="max_ranking_points"
+                                                               value="{{ competition.max_ranking_points }}"
+                                                               placeholder="Wpisz maxymalną liczbę punktów rankingowych"
+                                                               required="required">
+
+                                                        {% if competition.type == "KNOW" or competition.type == "EFFI" %}
+                                                        <label for="max_competition_points">Maksymalna liczba punktów w tej
+                                                            konkurencji:</label>
+                                                        <input type="number" min="0" max="1000"
+                                                               name="max_competition_points"
+                                                               class="form-control" id="max_competition_points"
+                                                               value="{{ competition.max_competition_points }}"
+                                                               placeholder="Wpisz maxymalną liczbę punktów w tej konkurencji"
+                                                               required="required">
+                                                        {% endif %}
+
+                                                        {% if competition.type == "REG" %}
+                                                            <label for="distance">Dystans:</label>
+                                                            <input type="number" step="0.01" min="0" max="1000"
+                                                                   name="distance"
+                                                                   class="form-control" id="distance"
+                                                                   value="{{ competition.reg_id.distance }}"
+                                                                   placeholder="Wpisz dystans" required="required">
+
+                                                            <label for="average_speed">Średnia prędkość:</label>
+                                                            <input type="number" step="0.01" min="0" max="1000"
+                                                                   name="average_speed"
+                                                                   class="form-control" id="average_speed"
+                                                                   value="{{ competition.reg_id.average_speed }}"
+                                                                   placeholder="Wpisz średnią prędkość" required="required">
+                                                        {% endif %}
+
+                                                        <label for="deadline_date">Data zakończenia konkurencji</label>
+                                                        <input type="time" name="deadline_date"
+                                                               class="form-control" id="deadline_date"
+                                                               value="{{ competition.deadline_date }}"
+                                                               placeholder="Podaj datę zakończenia konkurencji"
+                                                               required="required">
+
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success">ZAPISZ</button>
+                                                </form>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                        data-dismiss="modal">ANULUJ
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+            </code></pre>-->
+    </div>
+</section>
+
+<section class="container">
+    <div class="photos">
+        <div class="photo1">
+            <img src="../pliki/oldtimers2.png" alt="oldtimers"/>
+        </div>
+        <div class="photo1">
+            <img src="../pliki/oldtimers3.png" alt="oldtimers"/>
+        </div>
+    </div>
+</section>
+
+<section class="container link" style="text-align: center">
+    <h3>Chcesz zobaczyć więcej moich projektów? <br> Wbij na mojego
+        <a href="https://github.com/WojciechKaluzinski" target="_blank">
+            GitHuba </a> !!!</h3>
+</section>
+
+<section class="container link" style="text-align: center">
+    <h3>Chcesz się odprężyć? <br> Zagraj w
+        <a href="puzzle.html" target="_top">PUZZLE </a>
+        lub w
+        <a href="../pong/zad3.html" target="_top">PONGA </a> !!!</h3>
+
+</section>
+
+<footer class="footer-distributed">
+
+    <div class="footer-right">
+        <a href="https://www.facebook.com/profesorprzecinek/" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.youtube.com/channel/UC4QRzcsAkI_qy0wR-wwHXsw" target="_blank"><i class="fa fa-youtube"></i></a>
+        <a href="mailto:profesorprzecinek@wp.pl"><i class="fa fa-envelope"></i></a>
+        <a href="https://github.com/WojciechKaluzinski" target="_blank"><i class="fa fa-github"></i></a>
+    </div>
+
+    <div class="footer-left">
+
+        <p class="footer-links">
+            <a href="#"><span>Główna</span></a>
+            <a href="moje_zainteresowania.html"><span>O Mnie</span></a>
+            <a href="moje_hobby.html"><span>Hobby</span></a>
+        </p>
+
+        <div class="tooltip"><p>Wojciech Kałuziński &copy; 2021</p>
+            <span class="tooltiptext">Obrazy zaczerpnięte z: https://unsplash.com/</span>
+        </div>
+    </div>
+
+</footer>
+
+
+</body>
+<script src="../css/prism.js"></script>
+<script src="../js/menu.js"></script>
+</html>

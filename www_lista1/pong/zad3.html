@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+<h1 style="color: white">GRA PONG: </h1>
+<h3 style="color: white">Sterowanie: <br> gracz1: W S <br> gracz2: &#8593;   &#8595; </h3>
+<canvas id="canvas">
+    Your browser does not support the canvas element.
+</canvas>
+</body>
+<script id="2d-vertex-shader" type="x-shader/x-vertex">#version 300 es
+in vec2 a_position;
+in vec2 a_texcoord;
+
+
+uniform vec2 u_resolution;
+
+
+uniform vec2 u_translation;
+uniform float u_pointsize;
+
+out vec2 v_texcoord;
+
+
+void main() {
+
+  vec2 position = a_position + u_translation;
+
+
+  vec2 zeroToOne = position / u_resolution;
+
+
+  vec2 zeroToTwo = zeroToOne * 2.0;
+
+
+  vec2 clipSpace = zeroToTwo - 1.0;
+
+  gl_Position = vec4(clipSpace, 0, 1);
+   gl_PointSize = u_pointsize;
+
+  v_texcoord = a_texcoord;
+}
+
+
+</script>
+<script id="2d-fragment-shader" type="x-shader/x-fragment">#version 300 es
+
+precision mediump float;
+
+in vec2 v_texcoord;
+
+uniform sampler2D u_texture;
+uniform vec4 u_color;
+
+out vec4 outColor;
+
+void main() {
+    outColor = texture(u_texture, v_texcoord) + u_color;
+}
+
+</script>
+<script src="js/Drawable.js"></script>
+<script src="js/DrawableTexture.js"></script>
+<script src="js/Paddle.js"></script>
+<script src="js/Ball.js"></script>
+<script src="js/zad3.js"></script>
+</html>

@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    background: url(textures/bg1.gif) no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+canvas {
+    display: block;
+    width: 80vh;
+    height: 50vh;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    background: #000000;
+}
